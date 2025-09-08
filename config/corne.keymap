@@ -8,8 +8,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-
-#define AS(keycode) &as LS(keycode) keycode
+#define AS(keycode) &as keycode  // Removed invalid LS()
 
 / {
     chosen {
@@ -20,14 +19,14 @@
         tap_dance_q: tap_dance_q {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&kp Q>, <&kp ESC>;
+            bindings = <&kp Q &kp ESC>;
             tapping-term-ms = <200>;
         };
 
         tap_dance_tab: tap_dance_tab {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&kp TAB>, <&kp CAPS>;
+            bindings = <&kp TAB &kp CAPS>;
             tapping-term-ms = <200>;
         };
 
@@ -35,10 +34,9 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&tog 1>, <&tog 2>;
+            bindings = <&tog 1 &tog 2>;
         };
 
-        // Mod-tap behavior (used for modifier/alpha and shift/enter)
         mod_tap: mod_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -54,66 +52,40 @@
             tapping-term-ms = <350>;
             quick-tap-ms = <150>;
         };
-
     };
-        keymap {
-                compatible = "zmk,keymap";
 
-                default_layer {
-            // -----------------------------------------------------------------------------------------
-            // | Q/ESC |  W  |  F  |  P  |  G  |     |  J  |  L  |   U   |   Y   |   ;   |
-            // |  A    |  R  |  S  |  T  |  D  |     |  H  |  N  | E/LCTRL|I/LALT |O/LGUI |
-            // |Z/SHFT |  X  |  C  |  V  |  B  |     |  K  |  M  |   ,   |   .   |   '   |
-            //               |TAB/CAPS | Num/Fn | ENT/SHFT |    | BSPC | SPACE | DEL |
+    keymap {
+        compatible = "zmk,keymap";
 
+        default_layer {
             bindings = <
-                &tap_dance_q &kp W &kp F &kp P &kp G           &kp J &kp L &kp U &kp Y &kp SEMI
-                &kp A &kp R &kp S &kp T &kp D                   &kp H &kp N &mod_tap LCTRL E &mod_tap LALT I &mod_tap LGUI O
-                &mod_tap LSHIFT Z &kp X &kp C &kp V &kp B           &kp K &kp M &kp COMMA &kp DOT &kp APOS
+                &tap_dance_q &kp W &kp F &kp P &kp G &kp J &kp L &kp U &kp Y &kp SEMI
+                &kp A &kp R &kp S &kp T &kp D &kp H &kp N &mod_tap LCTRL E &mod_tap LALT I &mod_tap LGUI O
+                &mod_tap LSHIFT Z &kp X &kp C &kp V &kp B &kp K &kp M &kp COMMA &kp DOT &kp APOS
                 &tap_dance_tab &td_layer_switch &mod_tap_shift_enter LSHIFT ENTER &kp BSPC &kp SPACE &kp DEL
             >;
         };
 
         lower_layer {
-            // -----------------------------------------------------------------------------------------
-            // | ESC  |      |  UP  |      | DEL  |     |  *  |  7  |  8  |  9  |  -  |
-            // |      | LEFT | DOWN | RIGHT |      |     |  /  |  4  |  5  |  6  |  +  |
-            // | GUI  |      |      |       |      |     |  =  |  1  |  2  |  3  |  0  |
-            //                 | TAB | DEF | ENT/SHFT |     | BSPC | SPACE |  .  |
-
             bindings = <
-                &kp ESC &none &kp UP &none &kp DEL       &kp STAR &kp N7 &kp N8 &kp N9 &kp MINUS
-                &none   &kp LEFT &kp DOWN &kp RIGHT &none  &kp FSLH &kp N4 &kp N5 &kp N6 &kp KP_PLUS
-                &kp LGUI &none &none &none &none         &kp KP_EQUAL &kp N1 &kp N2 &kp N3 &kp N0
-                      &kp TAB &tog 1 &mod_tap_shift_enter LSHIFT ENTER &kp BSPC &kp SPACE &kp DOT
+                &kp ESC &none &kp UP &none &kp DEL &kp STAR &kp N7 &kp N8 &kp N9 &kp MINUS
+                &none &kp LEFT &kp DOWN &kp RIGHT &none &kp FSLH &kp N4 &kp N5 &kp N6 &kp KP_PLUS
+                &kp LGUI &none &none &none &none &kp KP_EQUAL &kp N1 &kp N2 &kp N3 &kp N0
+                &kp TAB &tog 1 &mod_tap_shift_enter LSHIFT ENTER &kp BSPC &kp SPACE &kp DOT
             >;
         };
 
         raise_layer {
-            // -----------------------------------------------------------------------------------------
-            // | F1  | F2  | F3  | F4  | F5  |     | F8  | F9   | F10  | F11  | F12  |
-            // |     |     |     |     | F6  |     | F7  |  `   |  [   |  ]   |  \   |
-            // |     |     |     |     |     |     |     |      |      |      |  /   |
-            //             | TAB | DEF | ENT/SHFT |    | BSPC | SPACE | DEL |
-
             bindings = <
-                &kp F1 &kp F2 &kp F3 &kp F4 &kp F5       &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-                &none  &none &none &none &kp F6          &kp F7 &kp GRAVE &kp LBKT &kp RBKT &kp BSLH
-                &none  &none &none &none &none           &none  &none &none &none &kp FSLH
-                      &kp TAB &tog 2 &mod_tap_shift_enter LSHIFT ENTER &kp BSPC &kp SPACE &kp DEL
+                &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
+                &none &none &none &none &kp F6 &kp F7 &kp GRAVE &kp LBKT &kp RBKT &kp BSLH
+                &none &none &none &none &none &none &none &none &none &kp FSLH
+                &kp TAB &tog 2 &mod_tap_shift_enter LSHIFT ENTER &kp BSPC &kp SPACE &kp DEL
             >;
-                };
-
-                extra_1 {
-                        status = "reserved";
-                };
-
-                extra_2 {
-                        status = "reserved";
-                };
-
-                extra_3 {
-                        status = "reserved";
-                };
         };
+
+        extra_1 { status = "reserved"; };
+        extra_2 { status = "reserved"; };
+        extra_3 { status = "reserved"; };
+    };
 };
