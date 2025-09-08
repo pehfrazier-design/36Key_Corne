@@ -46,6 +46,15 @@
             tapping-term-ms = <250>;
             quick-tap-ms = <150>;
         };
+
+        mod_tap_shift_enter: mod_tap_shift_enter {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <350>;
+            quick-tap-ms = <150>;
+        };
+
     };
         keymap {
                 compatible = "zmk,keymap";
@@ -61,7 +70,7 @@
                 &tap_dance_q &kp W &kp F &kp P &kp G           &kp J &kp L &kp U &kp Y &kp SEMI
                 &kp A &kp R &kp S &kp T &kp D                   &kp H &kp N &mod_tap LCTRL E &mod_tap LALT I &mod_tap LGUI O
                 &mod_tap LSHIFT Z &kp X &kp C &kp V &kp B           &kp K &kp M &kp COMMA &kp DOT &kp APOS
-                &tap_dance_tab &td_layer_switch &mod_tap LSHIFT ENTER &kp BSPC &kp SPACE &kp DEL
+                &tap_dance_tab &td_layer_switch &mod_tap_shift_enter LSHIFT ENTER &kp BSPC &kp SPACE &kp DEL
             >;
         };
 
@@ -76,7 +85,7 @@
                 &kp ESC &none &kp UP &none &kp DEL       &kp STAR &kp N7 &kp N8 &kp N9 &kp MINUS
                 &none   &kp LEFT &kp DOWN &kp RIGHT &none  &kp FSLH &kp N4 &kp N5 &kp N6 &kp KP_PLUS
                 &kp LGUI &none &none &none &none         &kp KP_EQUAL &kp N1 &kp N2 &kp N3 &kp N0
-                      &kp TAB &tog 1 &mod_tap LSHIFT ENTER &kp BSPC &kp SPACE &kp DOT
+                      &kp TAB &tog 1 &mod_tap_shift_enter LSHIFT ENTER &kp BSPC &kp SPACE &kp DOT
             >;
         };
 
@@ -91,7 +100,7 @@
                 &kp F1 &kp F2 &kp F3 &kp F4 &kp F5       &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
                 &none  &none &none &none &kp F6          &kp F7 &kp GRAVE &kp LBKT &kp RBKT &kp BSLH
                 &none  &none &none &none &none           &none  &none &none &none &kp FSLH
-                      &kp TAB &tog 2 &mod_tap LSHIFT ENTER &kp BSPC &kp SPACE &kp DEL
+                      &kp TAB &tog 2 &mod_tap_shift_enter LSHIFT ENTER &kp BSPC &kp SPACE &kp DEL
             >;
                 };
 
