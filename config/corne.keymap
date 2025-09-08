@@ -53,7 +53,9 @@
             flavor = "hold-preferred";
             tapping-term-ms = <250>;
             quick-tap-ms = <150>;
+            bindings = <&kp ENTER>, <&kp LSHIFT>;
         };
+      };
     };
         keymap {
                 compatible = "zmk,keymap";
