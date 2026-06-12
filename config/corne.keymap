@@ -68,14 +68,14 @@
         lower_layer {
             // -----------------------------------------------------------------------------------------
             // | ESC  |      |  UP  |      | DEL  |     |  *  |  7  |  8  |  9  |  -  |
-            // |      | LEFT | DOWN | RIGHT |      |     |  /  |  4  |  5  |  6  |  +/= |
+            // |      | LEFT | DOWN | RIGHT |      |     |  /  |  4  |  5  |  6  |  + |
             // | CTRL |      |      |       |      |     |  =  |  1  |  2  |  3  |  0  |
             //                 | TAB | DEF | ENT/SHFT |     | BSPC | SPACE |  .  |
 
             bindings = <
                 &kp ESC &none &kp UP &none &kp DEL       &kp STAR &kp N7 &kp N8 &kp N9 &kp MINUS
-                &none   &kp LEFT &kp DOWN &kp RIGHT &none  &kp FSLH &kp N4 &kp N5 &kp N6 &kp EQUAL
-                &kp LCTRL &none &none &none &none         &kp KP_EQUAL &kp N1 &kp N2 &kp N3 &kp N0
+                &none   &kp LEFT &kp DOWN &kp RIGHT &none  &kp FSLH &kp N4 &kp N5 &kp N6 &kp KP_PLUS
+                &kp LCTRL &none &none &none &none         &kp EQUAL &kp N1 &kp N2 &kp N3 &kp N0
                       &kp TAB &tog 1 &mod_tap LSHIFT ENTER &kp BSPC &kp SPACE &kp DOT
             >;
         };
